@@ -9,7 +9,6 @@
 	<h3>商品一覧</h3>
 	<%-- DIコンテナで管理しているセッションスコープBeanはSpELを利用して参照する --%>
 	<spring:eval var="cart" expression="@cart"/><%-- オブジェクトだけ取得したり --%>
-	<spring:eval var="itemCount" expression="@cart.getTotal()"  /><%-- メソッドを指定したり --%>
 	<h5>カートの数量：　${cart.total}</h5>
 	<p>カートの数量: ${itemCount}</p>
 	<hr />

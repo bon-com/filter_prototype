@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.filter.GenericFilterBean;
 
-public class LoggingFilter extends GenericFilterBean {
+/**
+ * web.xmlで登録するフィルターは、サーブレットコンテナ（Tomcatなど）によってインスタンス化される
+ * この場合、SpringのDIコンテナとは無関係になるため、DIコンテナ管理のBeanを参照できない
+ */
+public class SimpleLoggingFilter extends GenericFilterBean {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

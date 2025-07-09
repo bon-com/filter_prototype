@@ -59,12 +59,13 @@
 
 	<!-- LoggingFilterをサーブレットコンテナに登録 -->
 	<filter>
-		<filter-name>loggingFilter</filter-name>
-		<filter-class>com.example.prototype.web.filter.type01.LoggingFilter</filter-class>
+		<filter-name>simpleLoggingFilter</filter-name>
+		<filter-class>com.example.prototype.web.filter.type01.SimpleLoggingFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
-		<filter-name>loggingFilter</filter-name>
+		<filter-name>simpleLoggingFilter</filter-name>
 		<url-pattern>/*</url-pattern> <!-- すべてのリクエストに適用 -->
 	</filter-mapping>
+
 </web-app>

@@ -56,4 +56,15 @@
 			<include-prelude>/WEB-INF/common/include.jsp</include-prelude>
 		</jsp-property-group>
 	</jsp-config>
+
+	<!-- LoggingFilterをサーブレットコンテナに登録 -->
+	<filter>
+		<filter-name>loggingFilter</filter-name>
+		<filter-class>com.example.prototype.web.filter.type01.LoggingFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>loggingFilter</filter-name>
+		<url-pattern>/*</url-pattern> <!-- すべてのリクエストに適用 -->
+	</filter-mapping>
 </web-app>

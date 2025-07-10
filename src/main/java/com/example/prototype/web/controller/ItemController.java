@@ -1,4 +1,4 @@
-package com.example.prototype.web.controller.type01;
+package com.example.prototype.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,10 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.prototype.biz.service.type01.ItemService;
+import com.example.prototype.biz.service.ItemService;
 
 @Controller
-@RequestMapping("type01/items")
+@RequestMapping("items")
 public class ItemController {
 	
 	/** 商品サービス */
@@ -26,6 +26,6 @@ public class ItemController {
 		// 商品一覧
 		model.addAttribute("items", itemService.findAll());
 
-		return "type01/items";
+		return "items";
 	}
 }

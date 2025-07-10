@@ -23,8 +23,8 @@ public class SimpleLoggingFilter extends GenericFilterBean {
 		
         HttpServletRequest req = (HttpServletRequest) request;
         String path = req.getRequestURI();
-
-        logger.info("GenericFilterBeanを利用したログ出力 ⇒ リクエストURI: " + path);
+        // 一旦コメントアウト
+//        logger.info("GenericFilterBeanを利用したログ出力 ⇒ リクエストURI: " + path);
 
         chain.doFilter(request, response); // 次のフィルター or Controllerへ
 	}

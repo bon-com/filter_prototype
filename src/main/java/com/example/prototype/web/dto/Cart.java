@@ -1,13 +1,15 @@
-package com.example.prototype.web.dto.type01;
+package com.example.prototype.web.dto;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import lombok.Data;
+import lombok.ToString;
 /**
  * カートクラス
  */
 @Data
+@ToString
 public class Cart {
 	/** 商品毎の情報マップ */
 	private Map<String, CartItem> items = new LinkedHashMap<>();

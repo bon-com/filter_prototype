@@ -9,7 +9,7 @@
 <body>
 	<h3>フィルターの確認</h3>
 	<ul>
-		<li>商品カートの利用：　<a href="<c:url value='/type01/items/'/>">こちら</a></li>
+		<li>商品カートの利用：　<a href="<c:url value='/items/'/>">こちら</a></li>
 	</ul>
 </body>
 </html>

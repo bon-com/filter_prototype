@@ -1,4 +1,4 @@
-package com.example.prototype.web.dto.type01;
+package com.example.prototype.web.dto;
 
 import lombok.Data;
 

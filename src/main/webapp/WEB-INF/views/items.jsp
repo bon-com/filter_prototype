@@ -19,7 +19,7 @@
 			<th>数量</th>
 		</tr>
 		<c:forEach var="item" items="${items}">
-			<form method="post" action="${pageContext.request.contextPath}/type01/cart/add">
+			<form method="post" action="${pageContext.request.contextPath}/cart/add">
 			<tr>
 				<td>${item.name}</td>
 				<td>${item.price}円</td>
@@ -39,6 +39,6 @@
 		</c:forEach>
 	</table>
 	<br>
-	<a href="${pageContext.request.contextPath}/type01/order/">購入確認</a>
+	<a href="${pageContext.request.contextPath}/order/">購入確認</a>
 </body>
 </html>

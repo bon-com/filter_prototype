@@ -2,7 +2,7 @@
 ※最低限の動きを確認したいため、入力チェック等はなし
 
 ◇インデックス
-■type01：GenericFilterBeanの利用
+■type01：GenericFilterBeanの利用（単純なフィルター）
 ・説明：
 GenericFilterBeanを継承して作成したフィルタークラスでは、リクエストのたびにdoFilter()が実行される。
 さらに、内部でフォワードやリダイレクトが発生した場合にも、新たなリクエスト処理とみなされるため、doFilter()が再度呼び出される可能性がある。
@@ -16,3 +16,20 @@ GenericFilterBeanを継承して作成したフィルタークラスでは、リ
 ・使用方法（SpringのDIコンテナにアクセスしない場合）
 ①GenericFilterBeanを継承してフィルタークラスを作成
 ②web.xml（サーブレットコンテナ）にURLパターンを指定して登録
+
+■type02：GenericFilterBeanの利用（DIコンテナのBeanを参照するフィルター）
+・説明
+GenericFilterBeanを継承したフィルタークラスを利用して、ＤＩコンテナで管理するＢｅａｎを参照する。
+
+・使用方法
+①GenericFilterBeanを継承してフィルタークラスを作成
+②ルートアプリケーションコンテキストのDIコンテナに登録（WEBアプリケーションコンテキスト側だとエラーになった）
+③web.xmlに「org.springframework.web.filter.DelegatingFilterProxy」を指定し、
+DelegatingFilterProxy経由でサーブレットフィルタを実行する。
+DelegatingFilterProxyはSpringのDIコンテナに登録されているサーブレットフィルタに処理を委譲するフィルタ。
+④RequestContextFilterを使用する
+スレッドローカルにする設定を実施してやらないと、内部でスレッドローカルにする前にこのフィルターが呼ばれてエラーになった。
+ざっくりと、リクエスト情報をスレッドに紐づけているらしい。
+この紐づけ（スレッドローカル）により、リクエストのたびにHttpServletRequestがThreadLocalに自動的に紐付き、セッションスコープなどの取得が可能になる。
+→Springがリクエストやセッションスコープを扱えるのは、裏で「今どのスレッドがどのリクエストを処理しているか」をThreadLocal経由で管理しているから。
+　その仕組みの橋渡しがRequestContextFilter（またはRequestContextListener）とのこと。

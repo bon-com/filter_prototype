@@ -57,7 +57,7 @@
 		</jsp-property-group>
 	</jsp-config>
 
-	<!-- LoggingFilterをサーブレットコンテナに登録 -->
+	<!-- SimpleLoggingFilterをサーブレットコンテナに登録 -->
 	<filter>
 		<filter-name>simpleLoggingFilter</filter-name>
 		<filter-class>com.example.prototype.web.filter.type01.SimpleLoggingFilter</filter-class>
@@ -66,6 +66,27 @@
 	<filter-mapping>
 		<filter-name>simpleLoggingFilter</filter-name>
 		<url-pattern>/*</url-pattern> <!-- すべてのリクエストに適用 -->
+	</filter-mapping>
+
+	<!-- DiLoggingFilterをサーブレットコンテナに登録 -->
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<filter>
+		<filter-name>requestContextFilter</filter-name>
+		<filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>requestContextFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>diLoggingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>diLoggingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
 </web-app>

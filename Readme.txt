@@ -33,3 +33,16 @@ DelegatingFilterProxyはSpringのDIコンテナに登録されているサーブ
 この紐づけ（スレッドローカル）により、リクエストのたびにHttpServletRequestがThreadLocalに自動的に紐付き、セッションスコープなどの取得が可能になる。
 →Springがリクエストやセッションスコープを扱えるのは、裏で「今どのスレッドがどのリクエストを処理しているか」をThreadLocal経由で管理しているから。
 　その仕組みの橋渡しがRequestContextFilter（またはRequestContextListener）とのこと。
+
+■type03：OncePerRequestFilterの利用
+・説明
+OncePerRequestFilterを継承したフィルタークラスを利用して、ログ出力させる。
+同一リクエスト内で１回だけ処理が実行される。
+GenericFilterBeanを継承している。
+
+
+
+◇補足
+基本的にセッションスコープBeanをログ出力させない
+また、セッションスコープBeanはWebアプリケーションコンテキスト側で管理させたい
+いったんプロジェクトだけ残す

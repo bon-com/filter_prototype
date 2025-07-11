@@ -89,4 +89,15 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- OnceSimpleLoggingFilterをサーブレットコンテナに登録 -->
+	<filter>
+		<filter-name>onceSimpleLoggingFilter</filter-name>
+		<filter-class>com.example.prototype.web.filter.type03.OnceSimpleLoggingFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>onceSimpleLoggingFilter</filter-name>
+		<url-pattern>/*</url-pattern> <!-- すべてのリクエストに適用 -->
+	</filter-mapping>
+
 </web-app>

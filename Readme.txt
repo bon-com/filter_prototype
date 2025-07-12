@@ -40,6 +40,17 @@ OncePerRequestFilterを継承したフィルタークラスを利用して、ロ
 同一リクエスト内で１回だけ処理が実行される。
 GenericFilterBeanを継承している。
 
+・機能説明
+このフィルターを使用して、リクエスト～レスポンス完了までの処理時間（ミリ秒）を測っている
+[Client sends HTTP request]
+       ↓
+[Filter: start timing] ← ★ここで System.currentTimeMillis()
+       ↓
+[Spring MVC: DispatcherServlet → Controller → Service → View]
+       ↓
+[Filter: end timing]   ← ★ここで System.currentTimeMillis()
+       ↓
+[Response sent to client]
 
 
 ◇補足

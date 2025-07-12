@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
@@ -14,19 +16,25 @@ import org.springframework.web.filter.OncePerRequestFilter;
  */
 public class OnceSimpleLoggingFilter extends OncePerRequestFilter {
 
+	private static final Logger logger = LoggerFactory.getLogger(OnceSimpleLoggingFilter.class);
+
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		// TODO 自動生成されたメソッド・スタブ
-		
-		
-        HttpServletRequest req = (HttpServletRequest) request;
-        String path = req.getRequestURI();
-        // 一旦コメントアウト
-        logger.info("OncePerRequestFilterを利用したログ出力 ⇒ リクエストURI: " + path);
+		// 処理開始
+		long start = System.currentTimeMillis();
 
-        filterChain.doFilter(request, response); // 次のフィルター or Controllerへ
+		try {
+			filterChain.doFilter(request, response);
+		} finally {
+			// 処理終了
+			long duration = System.currentTimeMillis() - start;
+			logger.info("Request [{} {}] completed in {} ms with status {}",
+					request.getMethod(),
+					request.getRequestURI(),
+					duration,
+					response.getStatus());
+		}
 	}
-
 
 }
